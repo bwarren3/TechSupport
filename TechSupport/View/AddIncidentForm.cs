@@ -49,25 +49,25 @@ namespace TechSupport.View
             string title = this.titleTextBox.Text.Trim();
             if (string.IsNullOrWhiteSpace(title))
             {
-                //this.titleErrorLabel.Text = "Title is required.";
+                this.titleErrorLabel.Text = "Title is required.";
                 isValid = false;
             }
 
             string description = this.descriptionLabel.Text.Trim();
             if (string.IsNullOrWhiteSpace(description))
             {
-                //this.descriptionErrorLabel.Text = "Description is required.";
+                this.descriptionErrorLabel.Text = "Description is required.";
                 isValid = false;
             }
 
-            if (!int.TryParse(this.customerIDLabel.Text.Trim(), out int customerId))
+            if (!int.TryParse(this.customerIDTextBox.Text.Trim(), out int customerId))
             {
-                //this.customerIdErrorLabel.Text = "Customer ID must be an integer.";
+                this.customerIDErrorLabel.Text = "Customer ID must be an integer.";
                 isValid = false;
             }
             else if (customerId <= 0)
             {
-               //this.customerIdErrorLabel.Text = "Customer ID must be positive.";
+               this.customerIDErrorLabel.Text = "Customer ID must be positive.";
                 isValid = false;
             }
 
