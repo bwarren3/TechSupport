@@ -76,7 +76,7 @@
             addButton.TabIndex = 3;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
-            addButton.Click += btnAdd_Click;
+            addButton.Click += BtnAdd_Click;
             // 
             // cancelButton
             // 
@@ -86,7 +86,7 @@
             cancelButton.TabIndex = 4;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
-            cancelButton.Click += btnCancel_Click;
+            cancelButton.Click += BtnCancel_Click;
             // 
             // titleTextBox
             // 

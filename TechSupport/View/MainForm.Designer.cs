@@ -46,7 +46,7 @@
             mainFormLogoutLinkLabel.TabIndex = 1;
             mainFormLogoutLinkLabel.TabStop = true;
             mainFormLogoutLinkLabel.Text = "Logout";
-            mainFormLogoutLinkLabel.LinkClicked += lnkLogout_LinkClicked;
+            mainFormLogoutLinkLabel.LinkClicked += LnkLogout_LinkClicked;
             // 
             // mainFormUsernameLabel
             // 
@@ -65,7 +65,7 @@
             addIncidentButton.TabIndex = 3;
             addIncidentButton.Text = "Add Incident";
             addIncidentButton.UseVisualStyleBackColor = true;
-            addIncidentButton.Click += btnAddIncident_Click;
+            addIncidentButton.Click += BtnAddIncident_Click;
             // 
             // searchIncidentButton
             // 
@@ -75,7 +75,7 @@
             searchIncidentButton.TabIndex = 4;
             searchIncidentButton.Text = "Search Incident";
             searchIncidentButton.UseVisualStyleBackColor = true;
-            searchIncidentButton.Click += btnSearchIncident_Click;
+            searchIncidentButton.Click += BtnSearchIncident_Click;
             // 
             // incidentDataGridView
             // 

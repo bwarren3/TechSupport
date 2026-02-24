@@ -32,7 +32,7 @@
         /// Handles the Login button click.
         /// Validates credentials and opens the MainForm.
         /// </summary>
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void BtnLogin_Click(object sender, EventArgs e)
         {
             string username = this.usernameTextBox.Text;
             string password = this.passwordTextBox.Text;

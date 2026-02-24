@@ -55,7 +55,7 @@ namespace TechSupport.View
         /// Opens the Add Incident form as a modal dialog.
         /// If the user successfully adds an incident, refresh the grid.
         /// </summary>
-        private void btnAddIncident_Click(object sender, EventArgs e)
+        private void BtnAddIncident_Click(object sender, EventArgs e)
         {
             using (var addForm = new AddIncidentForm(this.incidentController))
             {
@@ -71,7 +71,7 @@ namespace TechSupport.View
         /// <summary>
         /// Opens the Search Incident form as a modal dialog.
         /// </summary>
-        private void btnSearchIncident_Click(object sender, EventArgs e)
+        private void BtnSearchIncident_Click(object sender, EventArgs e)
         {
             using (var searchForm = new SearchIncidentForm(this.incidentController))
             {
@@ -82,7 +82,7 @@ namespace TechSupport.View
         /// <summary>
         /// Logs the user out and returns to the LoginForm.
         /// </summary>
-        private void lnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void LnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
             this.loginForm.ReturnFromLogout();

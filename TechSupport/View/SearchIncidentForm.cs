@@ -39,7 +39,7 @@ namespace TechSupport.View
         /// <summary>
         /// Searches incidents by customer ID and displays results on this form.
         /// </summary>
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
             this.customerIDErroLabel.Text = "";
 
@@ -66,12 +66,12 @@ namespace TechSupport.View
         /// <summary>
         /// Closes the search form.
         /// </summary>
-        private void btnClose_Click(object sender, EventArgs e)
+        private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void txtCustomerId_TextChanged(object sender, EventArgs e)
+        private void TxtCustomerId_TextChanged(object sender, EventArgs e)
         {
             this.customerIDErroLabel.Text = "";
         }

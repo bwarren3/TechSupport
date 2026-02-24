@@ -8,13 +8,19 @@ namespace TechSupport.Controller
     /// </summary>
     public class IncidentController
     {
+        private readonly IncidentRepository repository;
+
+        public IncidentController()
+        {
+            this.repository = new IncidentRepository();
+        }
         /// <summary>
         /// Gets all incidents.
         /// </summary>
         /// <returns>A list of all incidents.</returns>
         public List<Incident> GetAllIncidents()
         {
-            return IncidentRepository.GetAll();
+            return this.repository.GetAll();
         }
 
         /// <summary>
@@ -23,7 +29,7 @@ namespace TechSupport.Controller
         /// <param name="incident">The incident to add.</param>
         public void AddIncident(Incident incident)
         {
-            IncidentRepository.Add(incident);
+            this.repository.Add(incident);
         }
 
         /// <summary>
@@ -33,7 +39,7 @@ namespace TechSupport.Controller
         /// <returns>A list of matching incidents.</returns>
         public List<Incident> SearchIncidentsByCustomerId(int customerId)
         {
-            return IncidentRepository.GetByCustomerId(customerId);
+            return this.repository.GetByCustomerId(customerId);
         }
     }
 }

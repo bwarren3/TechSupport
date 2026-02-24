@@ -5,16 +5,16 @@ namespace TechSupport.DAL
     /// <summary>
     /// Simulates persistent data storage for incidents.
     /// </summary>
-    public static class IncidentRepository
+    public class IncidentRepository
     {
-        private static readonly List<Incident> incidents = new();
-        private static int nextId = 1;
+        private readonly List<Incident> incidents = new();
+        private int nextId = 1;
 
         /// <summary>
         /// Gets all incidents.
         /// </summary>
         /// <returns>All incidents.</returns>
-        public static List<Incident> GetAll()
+        public List<Incident> GetAll()
         {
             return incidents.ToList();
         }
@@ -23,7 +23,7 @@ namespace TechSupport.DAL
         /// Adds an incident to the repository.
         /// </summary>
         /// <param name="incident">The incident to add.</param>
-        public static void Add(Incident incident)
+        public void Add(Incident incident)
         {
             incident.IncidentId = nextId++;
             incidents.Add(incident);
@@ -34,7 +34,7 @@ namespace TechSupport.DAL
         /// </summary>
         /// <param name="customerId">Customer ID.</param>
         /// <returns>Matching incidents.</returns>
-        public static List<Incident> GetByCustomerId(int customerId)
+        public List<Incident> GetByCustomerId(int customerId)
         {
             return incidents.Where(i => i.CustomerId == customerId).ToList();
         }

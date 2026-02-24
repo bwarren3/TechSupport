@@ -31,7 +31,7 @@ namespace TechSupport.View
         /// <summary>
         /// Handles Add button click. Validates and adds the incident.
         /// </summary>
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             ClearAllErrors();
 
@@ -84,7 +84,7 @@ namespace TechSupport.View
         /// <summary>
         /// Handles Cancel button click. Closes without adding.
         /// </summary>
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
@@ -104,17 +104,17 @@ namespace TechSupport.View
             this.customerIDErrorLabel.ForeColor = Color.Red;
         }
 
-        private void txtTitle_TextChanged(object sender, EventArgs e)
+        private void TxtTitle_TextChanged(object sender, EventArgs e)
         {
             this.titleErrorLabel.Text = "";
         }
 
-        private void txtDescription_TextChanged(object sender, EventArgs e)
+        private void TxtDescription_TextChanged(object sender, EventArgs e)
         {
             this.descriptionErrorLabel.Text = "";
         }
 
-        private void txtCustomerId_TextChanged(object sender, EventArgs e)
+        private void TxtCustomerId_TextChanged(object sender, EventArgs e)
         {
             this.customerIDErrorLabel.Text = "";
         }

@@ -80,7 +80,7 @@
             searchButton.TabIndex = 4;
             searchButton.Text = "Search";
             searchButton.UseVisualStyleBackColor = true;
-            searchButton.Click += btnSearch_Click;
+            searchButton.Click += BtnSearch_Click;
             // 
             // closeButton
             // 
@@ -90,7 +90,7 @@
             closeButton.TabIndex = 5;
             closeButton.Text = "Close";
             closeButton.UseVisualStyleBackColor = true;
-            closeButton.Click += btnClose_Click;
+            closeButton.Click += BtnClose_Click;
             // 
             // SearchIncidentForm
             // 
