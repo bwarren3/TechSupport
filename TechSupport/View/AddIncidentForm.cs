@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TechSupport.Controller;
+﻿using TechSupport.Controller;
 using TechSupport.Model;
 
 namespace TechSupport.View
@@ -67,7 +58,7 @@ namespace TechSupport.View
             }
             else if (customerId <= 0)
             {
-               this.customerIDErrorLabel.Text = "Customer ID must be positive.";
+                this.customerIDErrorLabel.Text = "Customer ID must be positive.";
                 isValid = false;
             }
 

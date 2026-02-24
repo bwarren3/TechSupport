@@ -1,5 +1,3 @@
-using System;
-using System.Windows.Forms;
 using TechSupport.View;
 
 namespace TechSupport
