@@ -41,36 +41,24 @@ namespace TechSupport.View
         }
 
         /// <summary>
-        /// Refreshes the ListView with current open incidents from the database.
+        /// Refreshes the open incidents list from the database.
         /// </summary>
         public void RefreshOpenIncidents()
         {
-            if (incidentController == null)
-            {
-                return;
-            }
-
-            List<OpenIncident> items;
-            try
-            {
-                items = incidentController.GetOpenIncidents();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Unable to load open incidents.\n{ex.Message}");
-                return;
-            }
+            var items = incidentController.GetOpenIncidents();
 
             OpenIncidentsListView.BeginUpdate();
             OpenIncidentsListView.Items.Clear();
 
             foreach (OpenIncident incident in items)
             {
-                ListViewItem row = new(incident.IncidentId.ToString());
+                ListViewItem row = new ListViewItem(incident.ProductCode);
+
+                row.SubItems.Add(incident.DateOpened.ToShortDateString());
                 row.SubItems.Add(incident.CustomerName);
-                row.SubItems.Add(incident.ProductName);
-                row.SubItems.Add(incident.DateOpened.ToString("d"));
                 row.SubItems.Add(incident.TechnicianName);
+                row.SubItems.Add(incident.Title);
+
                 OpenIncidentsListView.Items.Add(row);
             }
 

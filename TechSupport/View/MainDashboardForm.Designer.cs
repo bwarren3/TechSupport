@@ -8,6 +8,7 @@
         internal System.Windows.Forms.TabPage AddIncidentTab;
         internal System.Windows.Forms.TabPage LoadAllIncidentsTab;
         internal System.Windows.Forms.TabPage SearchIncidentTab;
+        internal System.Windows.Forms.TabPage DisplayOpenIncidentsTab;
 
         protected override void Dispose(bool disposing)
         {
@@ -24,6 +25,7 @@
             AddIncidentTab = new System.Windows.Forms.TabPage();
             LoadAllIncidentsTab = new System.Windows.Forms.TabPage();
             SearchIncidentTab = new System.Windows.Forms.TabPage();
+            DisplayOpenIncidentsTab = new System.Windows.Forms.TabPage();
 
             MainTabControl.SuspendLayout();
             SuspendLayout();
@@ -31,6 +33,7 @@
             MainTabControl.Controls.Add(AddIncidentTab);
             MainTabControl.Controls.Add(LoadAllIncidentsTab);
             MainTabControl.Controls.Add(SearchIncidentTab);
+            MainTabControl.Controls.Add(DisplayOpenIncidentsTab);
             MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             MainTabControl.Name = "MainTabControl";
             MainTabControl.SelectedIndex = 0;
@@ -46,6 +49,10 @@
             SearchIncidentTab.Name = "SearchIncidentTab";
             SearchIncidentTab.Text = "Search Incident";
             SearchIncidentTab.UseVisualStyleBackColor = true;
+
+            DisplayOpenIncidentsTab.Name = "DisplayOpenIncidentsTab";
+            DisplayOpenIncidentsTab.Text = "Display Open Incidents";
+            DisplayOpenIncidentsTab.UseVisualStyleBackColor = true;
 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;

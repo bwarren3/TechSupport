@@ -9,13 +9,23 @@ namespace TechSupport.Controller
     /// </summary>
     public class IncidentController
     {
+        private const string DefaultConnectionString =
+            "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=TechSupport;Integrated Security=True;";
+
         private readonly IncidentRepository inMemoryRepository;
         private readonly IncidentDbDal incidentDbDal;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IncidentController"/> class.
+        /// Initializes a new instance of the <see cref="IncidentController"/> class using the default connection string.
         /// </summary>
-        /// <param name="connectionString">Connection string used for DB features.</param>
+        public IncidentController() : this(DefaultConnectionString)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IncidentController"/> class using a provided connection string.
+        /// </summary>
+        /// <param name="connectionString">The database connection string.</param>
         public IncidentController(string connectionString)
         {
             inMemoryRepository = new IncidentRepository();

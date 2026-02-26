@@ -4,9 +4,9 @@
     {
         private System.ComponentModel.IContainer components = null;
         internal System.Windows.Forms.ListView OpenIncidentsListView;
-        private System.Windows.Forms.ColumnHeader IncidentIdColumn;
+        private System.Windows.Forms.ColumnHeader ProductCodeColumn;
         private System.Windows.Forms.ColumnHeader CustomerColumn;
-        private System.Windows.Forms.ColumnHeader ProductColumn;
+        private System.Windows.Forms.ColumnHeader TitleColumn;
         private System.Windows.Forms.ColumnHeader DateOpenedColumn;
         private System.Windows.Forms.ColumnHeader TechnicianColumn;
 
@@ -21,41 +21,41 @@
 
         private void InitializeComponent()
         {
-            OpenIncidentsListView = new System.Windows.Forms.ListView();
-            IncidentIdColumn = new System.Windows.Forms.ColumnHeader();
-            CustomerColumn = new System.Windows.Forms.ColumnHeader();
-            ProductColumn = new System.Windows.Forms.ColumnHeader();
-            DateOpenedColumn = new System.Windows.Forms.ColumnHeader();
-            TechnicianColumn = new System.Windows.Forms.ColumnHeader();
+            this.OpenIncidentsListView = new System.Windows.Forms.ListView();
+            this.ProductCodeColumn = new System.Windows.Forms.ColumnHeader();
+            this.DateOpenedColumn = new System.Windows.Forms.ColumnHeader();
+            this.CustomerColumn = new System.Windows.Forms.ColumnHeader();
+            this.TechnicianColumn = new System.Windows.Forms.ColumnHeader();
+            this.TitleColumn = new System.Windows.Forms.ColumnHeader();
             SuspendLayout();
 
-            OpenIncidentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-                IncidentIdColumn,
-                CustomerColumn,
-                ProductColumn,
-                DateOpenedColumn,
-                TechnicianColumn
-            });
+            this.OpenIncidentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ProductCodeColumn,
+            this.DateOpenedColumn,
+            this.CustomerColumn,
+            this.TechnicianColumn,
+            this.TitleColumn
+        });
 
-            OpenIncidentsListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            OpenIncidentsListView.Dock = DockStyle.Fill;
             OpenIncidentsListView.Name = "OpenIncidentsListView";
             OpenIncidentsListView.TabIndex = 0;
             OpenIncidentsListView.UseCompatibleStateImageBehavior = false;
 
-            IncidentIdColumn.Text = "Incident ID";
-            IncidentIdColumn.Width = 90;
+            this.ProductCodeColumn.Text = "Product Code";
+            this.ProductCodeColumn.Width = 100;
 
-            CustomerColumn.Text = "Customer";
-            CustomerColumn.Width = 220;
+            this.DateOpenedColumn.Text = "Date Opened";
+            this.DateOpenedColumn.Width = 120;
 
-            ProductColumn.Text = "Product";
-            ProductColumn.Width = 220;
+            this.CustomerColumn.Text = "Customer";
+            this.CustomerColumn.Width = 180;
 
-            DateOpenedColumn.Text = "Date Opened";
-            DateOpenedColumn.Width = 120;
+            this.TechnicianColumn.Text = "Technician";
+            this.TechnicianColumn.Width = 150;
 
-            TechnicianColumn.Text = "Technician";
-            TechnicianColumn.Width = 200;
+            this.TitleColumn.Text = "Title";
+            this.TitleColumn.Width = 250; ;
 
             Controls.Add(OpenIncidentsListView);
 

@@ -35,14 +35,13 @@ namespace TechSupport.DAL
             command.Connection = connection;
             command.CommandType = CommandType.Text;
             command.CommandText =
-                "SELECT i.IncidentID, c.Name AS CustomerName, p.Name AS ProductName, i.DateOpened, " +
-                "t.Name AS TechnicianName " +
+                "SELECT i.ProductCode, i.DateOpened ,c.Name AS CustomerName, ISNULL(t.Name, 'Unassigned') AS TechnicianName, " +
+                "i.Title " +
                 "FROM Incidents i " +
                 "JOIN Customers c ON i.CustomerID = c.CustomerID " +
-                "JOIN Products p ON i.ProductCode = p.ProductCode " +
-                "JOIN Technicians t ON i.TechID = t.TechID " +
+                " LEFT JOIN Technicians t ON i.TechID = t.TechID " +
                 "WHERE i.DateClosed IS NULL " +
-                "ORDER BY i.DateOpened DESC, i.IncidentID DESC;";
+                "ORDER BY i.DateOpened DESC;";
 
             connection.Open();
 
@@ -51,11 +50,11 @@ namespace TechSupport.DAL
             {
                 OpenIncident item = new()
                 {
-                    IncidentId = reader.GetInt32(reader.GetOrdinal("IncidentID")),
-                    CustomerName = reader.GetString(reader.GetOrdinal("CustomerName")),
-                    ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
-                    DateOpened = reader.GetDateTime(reader.GetOrdinal("DateOpened")),
-                    TechnicianName = reader.GetString(reader.GetOrdinal("TechnicianName"))
+                    ProductCode = reader["ProductCode"].ToString() ?? "",
+                    DateOpened = (DateTime)reader["DateOpened"],
+                    CustomerName = reader["CustomerName"].ToString() ?? "",
+                    TechnicianName = reader["TechnicianName"].ToString() ?? "",
+                    Title = reader["Title"].ToString() ?? ""
                 };
 
                 results.Add(item);
