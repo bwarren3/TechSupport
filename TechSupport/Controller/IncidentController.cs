@@ -1,45 +1,62 @@
-﻿using TechSupport.DAL;
+﻿using System.Collections.Generic;
+using TechSupport.DAL;
 using TechSupport.Model;
 
 namespace TechSupport.Controller
 {
     /// <summary>
-    /// Handles business logic related to incidents.
+    /// Coordinates incident operations between the UI and data layers.
     /// </summary>
     public class IncidentController
     {
-        private readonly IncidentRepository repository;
+        private readonly IncidentRepository inMemoryRepository;
+        private readonly IncidentDbDal incidentDbDal;
 
-        public IncidentController()
-        {
-            this.repository = new IncidentRepository();
-        }
         /// <summary>
-        /// Gets all incidents.
+        /// Initializes a new instance of the <see cref="IncidentController"/> class.
         /// </summary>
-        /// <returns>A list of all incidents.</returns>
+        /// <param name="connectionString">Connection string used for DB features.</param>
+        public IncidentController(string connectionString)
+        {
+            inMemoryRepository = new IncidentRepository();
+            incidentDbDal = new IncidentDbDal(connectionString);
+        }
+
+        /// <summary>
+        /// Gets all incidents from the in-memory list.
+        /// </summary>
+        /// <returns>A list of incidents.</returns>
         public List<Incident> GetAllIncidents()
         {
-            return this.repository.GetAll();
+            return inMemoryRepository.GetAll();
         }
 
         /// <summary>
-        /// Adds a new incident.
+        /// Adds an incident to the in-memory list.
         /// </summary>
         /// <param name="incident">The incident to add.</param>
         public void AddIncident(Incident incident)
         {
-            this.repository.Add(incident);
+            inMemoryRepository.Add(incident);
         }
 
         /// <summary>
-        /// Searches incidents by customer ID.
+        /// Searches incidents in the in-memory list by customer id.
         /// </summary>
-        /// <param name="customerId">The customer ID.</param>
+        /// <param name="customerId">Customer id to search.</param>
         /// <returns>A list of matching incidents.</returns>
         public List<Incident> SearchIncidentsByCustomerId(int customerId)
         {
-            return this.repository.GetByCustomerId(customerId);
+            return inMemoryRepository.GetByCustomerId(customerId);
+        }
+
+        /// <summary>
+        /// Gets open incidents from the database.
+        /// </summary>
+        /// <returns>A list of open incidents.</returns>
+        public List<OpenIncident> GetOpenIncidents()
+        {
+            return incidentDbDal.GetOpenIncidents();
         }
     }
 }
