@@ -82,7 +82,7 @@ namespace TechSupport.DAL
             cmd.Parameters.AddWithValue("@Description", description);
 
             conn.Open();
-            return cmd.ExecuteNonQuery(); 
+            return cmd.ExecuteNonQuery();
         }
     }
 }

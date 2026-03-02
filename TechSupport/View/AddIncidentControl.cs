@@ -15,12 +15,12 @@ namespace TechSupport.View
             InitializeComponent();
         }
 
-        
+
         public void Initialize(IncidentController incidentController)
         {
             controller = incidentController;
 
-            
+
             if (!eventsWired)
             {
                 this.Load += AddIncidentControl_Load;
@@ -30,7 +30,7 @@ namespace TechSupport.View
             }
         }
 
-       
+
         public void ResetForTabEntry()
         {
             ResetForm(keepSelections: true);
@@ -104,7 +104,7 @@ namespace TechSupport.View
                 return;
             }
 
-           
+
             bool hasRegistration = controller.RegistrationExists(selectedCustomer.CustomerID, selectedProduct.ProductCode);
             if (!hasRegistration)
             {
@@ -129,10 +129,10 @@ namespace TechSupport.View
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 lblMessage.Text = "Incident created successfully.";
 
-               
+
                 ResetForm(keepSelections: true);
 
-                
+
                 IncidentCreated?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)

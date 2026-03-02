@@ -76,10 +76,10 @@ namespace TechSupport.View
 
         private void AddIncidentControl_IncidentCreated(object? sender, EventArgs e)
         {
-            
+
             displayOpenIncidentsControl.RefreshOpenIncidents();
 
-           
+
             MainTabControl.SelectedTab = DisplayOpenIncidentsTab;
         }
         private void lnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

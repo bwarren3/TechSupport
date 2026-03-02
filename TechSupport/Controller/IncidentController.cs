@@ -8,10 +8,10 @@ namespace TechSupport.Controller
     /// </summary>
     public class IncidentController
     {
-        
+
         private readonly IncidentRepository inMemoryRepository;
 
-       
+
         private readonly IncidentDbDal incidentDbDal;
         private readonly CustomerDbDal customerDbDal;
         private readonly ProductDbDal productDbDal;
@@ -22,7 +22,7 @@ namespace TechSupport.Controller
         /// </summary>
         public IncidentController()
         {
-            
+
             inMemoryRepository = new IncidentRepository();
 
             incidentDbDal = new IncidentDbDal();
