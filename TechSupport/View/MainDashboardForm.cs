@@ -30,6 +30,8 @@ namespace TechSupport.View
             searchIncidentControl.Initialize(incidentController);
             displayOpenIncidentsControl.Initialize(incidentController);
 
+            addIncidentControl.IncidentCreated += AddIncidentControl_IncidentCreated;
+
             addIncidentControl.Dock = DockStyle.Fill;
             loadAllIncidentsControl.Dock = DockStyle.Fill;
             searchIncidentControl.Dock = DockStyle.Fill;
@@ -72,15 +74,20 @@ namespace TechSupport.View
             }
         }
 
+        private void AddIncidentControl_IncidentCreated(object? sender, EventArgs e)
+        {
+            
+            displayOpenIncidentsControl.RefreshOpenIncidents();
+
+           
+            MainTabControl.SelectedTab = DisplayOpenIncidentsTab;
+        }
         private void lnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Hide();
-
-            // Show login screen again
             LoginForm login = new LoginForm();
             login.Show();
 
-            // Close dashboard after login opens
             this.Close();
         }
     }

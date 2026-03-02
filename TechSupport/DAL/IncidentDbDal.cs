@@ -61,5 +61,28 @@ namespace TechSupport.DAL
 
             return results;
         }
+
+        /// <summary>
+        /// Adds an incident to the database.
+        /// </summary>
+        /// <returns> Returns 1 if added</returns>
+        public int AddIncident(int customerId, string productCode, string title, string description)
+        {
+            const string sql = @"
+        INSERT INTO Incidents (CustomerID, ProductCode, TechID, DateOpened, DateClosed, Title, Description)
+        VALUES (@CustomerID, @ProductCode, NULL, @DateOpened, NULL, @Title, @Description);";
+
+            using SqlConnection conn = new(connectionString);
+            using SqlCommand cmd = new(sql, conn);
+
+            cmd.Parameters.AddWithValue("@CustomerID", customerId);
+            cmd.Parameters.AddWithValue("@ProductCode", productCode);
+            cmd.Parameters.AddWithValue("@DateOpened", DateTime.Now);
+            cmd.Parameters.AddWithValue("@Title", title);
+            cmd.Parameters.AddWithValue("@Description", description);
+
+            conn.Open();
+            return cmd.ExecuteNonQuery(); 
+        }
     }
 }

@@ -1,132 +1,150 @@
-﻿using System.ComponentModel;
-using TechSupport.Controller;
+﻿using TechSupport.Controller;
 using TechSupport.Model;
 
 namespace TechSupport.View
 {
-    /// <summary>
-    /// Provides UI for adding an incident.
-    /// </summary>
     public partial class AddIncidentControl : UserControl
     {
-        private IncidentController? incidentController;
+        private IncidentController? controller;
+        private bool eventsWired = false;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AddIncidentControl"/> class.
-        /// </summary>
+        public event EventHandler? IncidentCreated;
+
         public AddIncidentControl()
         {
             InitializeComponent();
+        }
 
-            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)
+        
+        public void Initialize(IncidentController incidentController)
+        {
+            controller = incidentController;
+
+            
+            if (!eventsWired)
             {
+                this.Load += AddIncidentControl_Load;
+                btnCreateIncident.Click += BtnCreateIncident_Click;
+                btnClear.Click += BtnClear_Click;
+                eventsWired = true;
+            }
+        }
+
+       
+        public void ResetForTabEntry()
+        {
+            ResetForm(keepSelections: true);
+        }
+
+        private void AddIncidentControl_Load(object? sender, EventArgs e)
+        {
+            LoadComboBoxes();
+            ResetForm(keepSelections: false);
+        }
+
+        private void LoadComboBoxes()
+        {
+            if (controller == null) return;
+
+            var customers = controller.GetCustomers();
+            var products = controller.GetProducts();
+
+            cboCustomer.DataSource = null;
+            cboCustomer.DataSource = customers;
+            cboCustomer.DisplayMember = "Name";
+            cboCustomer.ValueMember = "CustomerID";
+
+            cboProduct.DataSource = null;
+            cboProduct.DataSource = products;
+            cboProduct.DisplayMember = "Name";
+            cboProduct.ValueMember = "ProductCode";
+        }
+
+        private void ResetForm(bool keepSelections)
+        {
+            lblMessage.Text = "";
+            lblMessage.ForeColor = System.Drawing.Color.Black;
+
+            txtTitle.Text = "";
+            txtDescription.Text = "";
+
+            if (!keepSelections)
+            {
+                if (cboCustomer.Items.Count > 0) cboCustomer.SelectedIndex = 0;
+                if (cboProduct.Items.Count > 0) cboProduct.SelectedIndex = 0;
+            }
+        }
+
+        private void BtnClear_Click(object? sender, EventArgs e)
+        {
+            ResetForm(keepSelections: true);
+        }
+
+        private void BtnCreateIncident_Click(object? sender, EventArgs e)
+        {
+            if (controller == null)
+            {
+                ShowError("Controller not initialized.");
                 return;
             }
 
-            ClearAllErrors();
-        }
-
-        /// <summary>
-        /// Initializes the control with a shared controller.
-        /// </summary>
-        /// <param name="controller">The incident controller.</param>
-        public void Initialize(IncidentController controller)
-        {
-            incidentController = controller;
-        }
-
-        private void BtnAdd_Click(object sender, EventArgs e)
-        {
-            if (incidentController == null)
+            if (cboCustomer.SelectedItem is not Customer selectedCustomer ||
+                cboProduct.SelectedItem is not Product selectedProduct)
             {
-                MessageBox.Show("Controller is not initialized.");
+                ShowError("Please select a customer and a product.");
                 return;
             }
 
-            ClearAllErrors();
+            string title = txtTitle.Text.Trim();
+            string description = txtDescription.Text.Trim();
 
-            bool isValid = true;
-
-            string title = TitleTextBox.Text.Trim();
-            if (string.IsNullOrWhiteSpace(title))
+            if (string.IsNullOrWhiteSpace(title) || string.IsNullOrWhiteSpace(description))
             {
-                TitleErrorLabel.Text = "Title is required.";
-                isValid = false;
-            }
-
-            string description = DescriptionTextBox.Text.Trim();
-            if (string.IsNullOrWhiteSpace(description))
-            {
-                DescriptionErrorLabel.Text = "Description is required.";
-                isValid = false;
-            }
-
-            if (!int.TryParse(CustomerIDTextBox.Text.Trim(), out int customerId))
-            {
-                CustomerIDErrorLabel.Text = "Customer ID must be a number.";
-                isValid = false;
-            }
-            else if (customerId <= 0)
-            {
-                CustomerIDErrorLabel.Text = "Customer ID must be positive.";
-                isValid = false;
-            }
-
-            if (!isValid)
-            {
+                ShowError("Title and Description are required.");
                 return;
             }
 
-            Incident incident = new Incident
+           
+            bool hasRegistration = controller.RegistrationExists(selectedCustomer.CustomerID, selectedProduct.ProductCode);
+            if (!hasRegistration)
             {
-                Title = title,
-                Description = description,
-                CustomerId = customerId
-            };
+                ShowError("No registration is associated with the selected product for this customer.");
+                return;
+            }
 
-            incidentController.AddIncident(incident);
+            try
+            {
+                bool created = controller.CreateIncident(
+                    selectedCustomer.CustomerID,
+                    selectedProduct.ProductCode,
+                    title,
+                    description);
 
-            MessageBox.Show("Incident added.");
+                if (!created)
+                {
+                    ShowError("Incident was not created.");
+                    return;
+                }
 
-            TitleTextBox.Text = "";
-            DescriptionTextBox.Text = "";
-            CustomerIDTextBox.Text = "";
-            TitleTextBox.Focus();
+                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.Text = "Incident created successfully.";
+
+               
+                ResetForm(keepSelections: true);
+
+                
+                IncidentCreated?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception ex)
+            {
+                ShowError("Error creating incident: " + ex.Message);
+            }
         }
 
-        private void BtnClear_Click(object sender, EventArgs e)
+        private void ShowError(string message)
         {
-            TitleTextBox.Text = "";
-            DescriptionTextBox.Text = "";
-            CustomerIDTextBox.Text = "";
-            ClearAllErrors();
-            TitleTextBox.Focus();
-        }
-
-        private void TxtTitle_TextChanged(object sender, EventArgs e)
-        {
-            TitleErrorLabel.Text = "";
-        }
-
-        private void TxtDescription_TextChanged(object sender, EventArgs e)
-        {
-            DescriptionErrorLabel.Text = "";
-        }
-
-        private void TxtCustomerId_TextChanged(object sender, EventArgs e)
-        {
-            CustomerIDErrorLabel.Text = "";
-        }
-
-        private void ClearAllErrors()
-        {
-            TitleErrorLabel.Text = "";
-            DescriptionErrorLabel.Text = "";
-            CustomerIDErrorLabel.Text = "";
-
-            TitleErrorLabel.ForeColor = System.Drawing.Color.Red;
-            DescriptionErrorLabel.ForeColor = System.Drawing.Color.Red;
-            CustomerIDErrorLabel.ForeColor = System.Drawing.Color.Red;
+            lblMessage.ForeColor = System.Drawing.Color.Red;
+            lblMessage.Text = message;
         }
     }
 }
