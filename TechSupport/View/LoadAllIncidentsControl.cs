@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Forms;
 using TechSupport.Controller;
 
 namespace TechSupport.View

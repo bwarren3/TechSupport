@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TechSupport.Model
+﻿namespace TechSupport.Model
 {
     /// <summary>
     /// Represents a row used to display open incidents.

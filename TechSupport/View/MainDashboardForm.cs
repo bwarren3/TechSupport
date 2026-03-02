@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Forms;
-using TechSupport.Controller;
+﻿using TechSupport.Controller;
 
 namespace TechSupport.View
 {
@@ -9,9 +7,6 @@ namespace TechSupport.View
     /// </summary>
     public partial class MainDashboardForm : Form
     {
-        private const string ConnectionString =
-            "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=TechSupport;Integrated Security=True;";
-
         private readonly IncidentController incidentController;
 
         private readonly AddIncidentControl addIncidentControl = new AddIncidentControl();
@@ -28,7 +23,7 @@ namespace TechSupport.View
 
             StartPosition = FormStartPosition.CenterScreen;
 
-            incidentController = new IncidentController(ConnectionString);
+            incidentController = new IncidentController();
 
             addIncidentControl.Initialize(incidentController);
             loadAllIncidentsControl.Initialize(incidentController);
@@ -46,7 +41,6 @@ namespace TechSupport.View
             DisplayOpenIncidentsTab.Controls.Add(displayOpenIncidentsControl);
 
             MainTabControl.SelectedIndexChanged += MainTabControl_SelectedIndexChanged;
-
             MainTabControl.MouseDown += MainTabControl_MouseDown;
         }
 
@@ -76,6 +70,18 @@ namespace TechSupport.View
             {
                 displayOpenIncidentsControl.RefreshOpenIncidents();
             }
+        }
+
+        private void lnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+
+            // Show login screen again
+            LoginForm login = new LoginForm();
+            login.Show();
+
+            // Close dashboard after login opens
+            this.Close();
         }
     }
 }

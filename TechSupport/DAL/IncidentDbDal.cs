@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using TechSupport.Model;
 
 namespace TechSupport.DAL
@@ -17,9 +15,10 @@ namespace TechSupport.DAL
         /// Initializes a new instance of the <see cref="IncidentDbDal"/> class.
         /// </summary>
         /// <param name="connectionString">The database connection string.</param>
-        public IncidentDbDal(string connectionString)
+        public IncidentDbDal()
         {
-            this.connectionString = connectionString;
+            DbConfig config = new DbConfig();
+            connectionString = config.ConnectionString;
         }
 
         /// <summary>

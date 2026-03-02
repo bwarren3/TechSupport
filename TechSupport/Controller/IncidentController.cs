@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TechSupport.DAL;
+﻿using TechSupport.DAL;
 using TechSupport.Model;
 
 namespace TechSupport.Controller
@@ -9,27 +8,19 @@ namespace TechSupport.Controller
     /// </summary>
     public class IncidentController
     {
-        private const string DefaultConnectionString =
-            "Data Source=(LocalDB)\\MSSQLLocalDB;Initial Catalog=TechSupport;Integrated Security=True;";
-
         private readonly IncidentRepository inMemoryRepository;
         private readonly IncidentDbDal incidentDbDal;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IncidentController"/> class using the default connection string.
+        /// Initializes a new instance of the <see cref="IncidentController"/> class.
         /// </summary>
-        public IncidentController() : this(DefaultConnectionString)
+        public IncidentController()
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IncidentController"/> class using a provided connection string.
-        /// </summary>
-        /// <param name="connectionString">The database connection string.</param>
-        public IncidentController(string connectionString)
-        {
+            // In-memory repository (used for add/search features)
             inMemoryRepository = new IncidentRepository();
-            incidentDbDal = new IncidentDbDal(connectionString);
+
+            // DAL now handles connection string internally via DbConfig/App.config
+            incidentDbDal = new IncidentDbDal();
         }
 
         /// <summary>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace TechSupport.View
+﻿namespace TechSupport.View
 {
     /// <summary>
     /// Login form for the TechSupport application.
@@ -66,7 +62,13 @@ namespace TechSupport.View
 
         private void Dashboard_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            Close();
+            passwordTextBox.Clear();
+
+            messageLabel.Text = string.Empty;
+
+            this.Show();
+            this.Activate();
+            passwordTextBox.Focus();
         }
 
         private void ClearErrorMessage(object? sender, EventArgs e)
