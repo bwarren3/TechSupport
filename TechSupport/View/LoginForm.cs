@@ -35,10 +35,10 @@
             {
                 messageLabel.Text = string.Empty;
 
-                Hide();
-
-                dashboard = new MainDashboardForm();
+                dashboard = new MainDashboardForm(this);
                 dashboard.FormClosed += Dashboard_FormClosed;
+
+                Hide();
                 dashboard.Show();
             }
             else
@@ -49,37 +49,39 @@
         }
 
         /// <summary>
-        /// Returns the user to the login screen and clears the password field.
+        /// Returns the user to the login screen after logging out.
         /// </summary>
         public void ReturnFromLogout()
         {
-            passwordTextBox.Text = string.Empty;
+            passwordTextBox.Clear();
             messageLabel.Text = string.Empty;
+
             Show();
             Activate();
-            usernameTextBox.Focus();
+            passwordTextBox.Focus();
         }
 
+        /// <summary>
+        /// Handles the dashboard closing behavior.
+        /// If the user clicked Logout, show the login form again.
+        /// Otherwise, close the hidden login form so the application exits.
+        /// </summary>
         private void Dashboard_FormClosed(object? sender, FormClosedEventArgs e)
         {
-            passwordTextBox.Clear();
-
-            messageLabel.Text = string.Empty;
-
-            this.Show();
-            this.Activate();
-            passwordTextBox.Focus();
+            if (dashboard != null && dashboard.WasLoggedOut)
+            {
+                ReturnFromLogout();
+                dashboard = null;
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void ClearErrorMessage(object? sender, EventArgs e)
         {
             messageLabel.Text = string.Empty;
-        }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            base.OnFormClosed(e);
-            Application.Exit();
         }
     }
 }

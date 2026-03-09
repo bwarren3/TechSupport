@@ -3,34 +3,47 @@ using TechSupport.Model;
 
 namespace TechSupport.View
 {
+    /// <summary>
+    /// Provides the UI for creating a new incident.
+    /// </summary>
     public partial class AddIncidentControl : UserControl
     {
         private IncidentController? controller;
         private bool eventsWired = false;
 
+        /// <summary>
+        /// Occurs after an incident is successfully created.
+        /// </summary>
         public event EventHandler? IncidentCreated;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AddIncidentControl"/> class.
+        /// </summary>
         public AddIncidentControl()
         {
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Initializes the control with the required controller.
+        /// </summary>
+        /// <param name="incidentController">The controller used to load and create incidents.</param>
         public void Initialize(IncidentController incidentController)
         {
             controller = incidentController;
 
-
             if (!eventsWired)
             {
-                this.Load += AddIncidentControl_Load;
+                Load += AddIncidentControl_Load;
                 btnCreateIncident.Click += BtnCreateIncident_Click;
                 btnClear.Click += BtnClear_Click;
                 eventsWired = true;
             }
         }
 
-
+        /// <summary>
+        /// Resets the form when the user navigates back to the tab.
+        /// </summary>
         public void ResetForTabEntry()
         {
             ResetForm(keepSelections: true);
@@ -42,9 +55,15 @@ namespace TechSupport.View
             ResetForm(keepSelections: false);
         }
 
+        /// <summary>
+        /// Loads the customer and product combo boxes.
+        /// </summary>
         private void LoadComboBoxes()
         {
-            if (controller == null) return;
+            if (controller == null)
+            {
+                return;
+            }
 
             var customers = controller.GetCustomers();
             var products = controller.GetProducts();
@@ -60,18 +79,29 @@ namespace TechSupport.View
             cboProduct.ValueMember = "ProductCode";
         }
 
+        /// <summary>
+        /// Resets the input controls.
+        /// </summary>
+        /// <param name="keepSelections">True to keep the selected customer and product; otherwise false.</param>
         private void ResetForm(bool keepSelections)
         {
-            lblMessage.Text = "";
-            lblMessage.ForeColor = System.Drawing.Color.Black;
+            lblMessage.Text = string.Empty;
+            lblMessage.ForeColor = Color.Black;
 
-            txtTitle.Text = "";
-            txtDescription.Text = "";
+            txtTitle.Text = string.Empty;
+            txtDescription.Text = string.Empty;
 
             if (!keepSelections)
             {
-                if (cboCustomer.Items.Count > 0) cboCustomer.SelectedIndex = 0;
-                if (cboProduct.Items.Count > 0) cboProduct.SelectedIndex = 0;
+                if (cboCustomer.Items.Count > 0)
+                {
+                    cboCustomer.SelectedIndex = 0;
+                }
+
+                if (cboProduct.Items.Count > 0)
+                {
+                    cboProduct.SelectedIndex = 0;
+                }
             }
         }
 
@@ -104,7 +134,6 @@ namespace TechSupport.View
                 return;
             }
 
-
             bool hasRegistration = controller.RegistrationExists(selectedCustomer.CustomerID, selectedProduct.ProductCode);
             if (!hasRegistration)
             {
@@ -126,13 +155,10 @@ namespace TechSupport.View
                     return;
                 }
 
-                lblMessage.ForeColor = System.Drawing.Color.Green;
+                lblMessage.ForeColor = Color.Green;
                 lblMessage.Text = "Incident created successfully.";
 
-
                 ResetForm(keepSelections: true);
-
-
                 IncidentCreated?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception ex)
@@ -141,9 +167,13 @@ namespace TechSupport.View
             }
         }
 
+        /// <summary>
+        /// Displays an error message to the user.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
         private void ShowError(string message)
         {
-            lblMessage.ForeColor = System.Drawing.Color.Red;
+            lblMessage.ForeColor = Color.Red;
             lblMessage.Text = message;
         }
     }

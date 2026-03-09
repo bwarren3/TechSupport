@@ -10,12 +10,19 @@ namespace TechSupport.DAL
     {
         private readonly string connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomerDbDal"/> class.
+        /// </summary>
         public CustomerDbDal()
         {
             DbConfig config = new DbConfig();
             connectionString = config.ConnectionString;
         }
 
+        /// <summary>
+        /// Gets all customers from the database.
+        /// </summary>
+        /// <returns>A list of customers ordered by name.</returns>
         public List<Customer> GetCustomers()
         {
             List<Customer> customers = new();
@@ -36,7 +43,7 @@ namespace TechSupport.DAL
                 customers.Add(new Customer
                 {
                     CustomerID = (int)reader["CustomerID"],
-                    Name = reader["Name"].ToString() ?? ""
+                    Name = reader["Name"].ToString() ?? string.Empty
                 });
             }
 

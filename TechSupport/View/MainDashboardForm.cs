@@ -8,6 +8,7 @@ namespace TechSupport.View
     public partial class MainDashboardForm : Form
     {
         private readonly IncidentController incidentController;
+        private readonly LoginForm loginForm;
 
         private readonly AddIncidentControl addIncidentControl = new AddIncidentControl();
         private readonly LoadAllIncidentsControl loadAllIncidentsControl = new LoadAllIncidentsControl();
@@ -15,11 +16,19 @@ namespace TechSupport.View
         private readonly DisplayOpenIncidentsControl displayOpenIncidentsControl = new DisplayOpenIncidentsControl();
 
         /// <summary>
+        /// Gets a value indicating whether the dashboard was closed by clicking Logout.
+        /// </summary>
+        public bool WasLoggedOut { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainDashboardForm"/> class.
         /// </summary>
-        public MainDashboardForm()
+        /// <param name="loginForm">The login form that opened this dashboard.</param>
+        public MainDashboardForm(LoginForm loginForm)
         {
             InitializeComponent();
+
+            this.loginForm = loginForm;
 
             StartPosition = FormStartPosition.CenterScreen;
 
@@ -76,19 +85,14 @@ namespace TechSupport.View
 
         private void AddIncidentControl_IncidentCreated(object? sender, EventArgs e)
         {
-
             displayOpenIncidentsControl.RefreshOpenIncidents();
-
-
             MainTabControl.SelectedTab = DisplayOpenIncidentsTab;
         }
+
         private void lnkLogout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
-            LoginForm login = new LoginForm();
-            login.Show();
-
-            this.Close();
+            WasLoggedOut = true;
+            Close();
         }
     }
 }

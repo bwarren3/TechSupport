@@ -10,12 +10,19 @@ namespace TechSupport.DAL
     {
         private readonly string connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductDbDal"/> class.
+        /// </summary>
         public ProductDbDal()
         {
             DbConfig config = new DbConfig();
             connectionString = config.ConnectionString;
         }
 
+        /// <summary>
+        /// Gets all products from the database.
+        /// </summary>
+        /// <returns>A list of products ordered by name.</returns>
         public List<Product> GetProducts()
         {
             List<Product> products = new();
@@ -35,8 +42,8 @@ namespace TechSupport.DAL
             {
                 products.Add(new Product
                 {
-                    ProductCode = reader["ProductCode"].ToString() ?? "",
-                    Name = reader["Name"].ToString() ?? ""
+                    ProductCode = reader["ProductCode"].ToString() ?? string.Empty,
+                    Name = reader["Name"].ToString() ?? string.Empty
                 });
             }
 
