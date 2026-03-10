@@ -11,9 +11,8 @@ namespace TechSupport.View
         private readonly LoginForm loginForm;
 
         private readonly AddIncidentControl addIncidentControl = new AddIncidentControl();
-        private readonly LoadAllIncidentsControl loadAllIncidentsControl = new LoadAllIncidentsControl();
-        private readonly SearchIncidentControl searchIncidentControl = new SearchIncidentControl();
         private readonly DisplayOpenIncidentsControl displayOpenIncidentsControl = new DisplayOpenIncidentsControl();
+        private readonly UpdateIncidentControl updateIncidentControl = new UpdateIncidentControl();
 
         /// <summary>
         /// Gets a value indicating whether the dashboard was closed by clicking Logout.
@@ -34,25 +33,34 @@ namespace TechSupport.View
 
             incidentController = new IncidentController();
 
+         
             addIncidentControl.Initialize(incidentController);
-            loadAllIncidentsControl.Initialize(incidentController);
-            searchIncidentControl.Initialize(incidentController);
             displayOpenIncidentsControl.Initialize(incidentController);
+            updateIncidentControl.Initialize(incidentController);
 
+        
             addIncidentControl.IncidentCreated += AddIncidentControl_IncidentCreated;
+            updateIncidentControl.IncidentChanged += UpdateIncidentControl_IncidentChanged;
 
+          
             addIncidentControl.Dock = DockStyle.Fill;
-            loadAllIncidentsControl.Dock = DockStyle.Fill;
-            searchIncidentControl.Dock = DockStyle.Fill;
             displayOpenIncidentsControl.Dock = DockStyle.Fill;
+            updateIncidentControl.Dock = DockStyle.Fill;
 
+            
             AddIncidentTab.Controls.Add(addIncidentControl);
-            LoadAllIncidentsTab.Controls.Add(loadAllIncidentsControl);
-            SearchIncidentTab.Controls.Add(searchIncidentControl);
             DisplayOpenIncidentsTab.Controls.Add(displayOpenIncidentsControl);
+            UpdateIncidentTab.Controls.Add(updateIncidentControl);
 
+            
             MainTabControl.SelectedIndexChanged += MainTabControl_SelectedIndexChanged;
             MainTabControl.MouseDown += MainTabControl_MouseDown;
+        }
+
+        private void UpdateIncidentControl_IncidentChanged(object? sender, EventArgs e)
+        {
+            displayOpenIncidentsControl.RefreshOpenIncidents();
+            MainTabControl.SelectedTab = DisplayOpenIncidentsTab;
         }
 
         private void MainTabControl_MouseDown(object? sender, MouseEventArgs e)
@@ -72,14 +80,14 @@ namespace TechSupport.View
 
         private void MainTabControl_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            if (MainTabControl.SelectedTab == LoadAllIncidentsTab)
-            {
-                loadAllIncidentsControl.RefreshIncidentGrid();
-            }
-
             if (MainTabControl.SelectedTab == DisplayOpenIncidentsTab)
             {
                 displayOpenIncidentsControl.RefreshOpenIncidents();
+            }
+
+            if (MainTabControl.SelectedTab == UpdateIncidentTab)
+            {
+                updateIncidentControl.ResetForm();
             }
         }
 
