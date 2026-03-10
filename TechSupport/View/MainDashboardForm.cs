@@ -33,26 +33,26 @@ namespace TechSupport.View
 
             incidentController = new IncidentController();
 
-         
+
             addIncidentControl.Initialize(incidentController);
             displayOpenIncidentsControl.Initialize(incidentController);
             updateIncidentControl.Initialize(incidentController);
 
-        
+
             addIncidentControl.IncidentCreated += AddIncidentControl_IncidentCreated;
             updateIncidentControl.IncidentChanged += UpdateIncidentControl_IncidentChanged;
 
-          
+
             addIncidentControl.Dock = DockStyle.Fill;
             displayOpenIncidentsControl.Dock = DockStyle.Fill;
             updateIncidentControl.Dock = DockStyle.Fill;
 
-            
+
             AddIncidentTab.Controls.Add(addIncidentControl);
             DisplayOpenIncidentsTab.Controls.Add(displayOpenIncidentsControl);
             UpdateIncidentTab.Controls.Add(updateIncidentControl);
 
-            
+
             MainTabControl.SelectedIndexChanged += MainTabControl_SelectedIndexChanged;
             MainTabControl.MouseDown += MainTabControl_MouseDown;
         }
