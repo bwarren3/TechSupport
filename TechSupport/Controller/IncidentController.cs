@@ -10,12 +10,11 @@ namespace TechSupport.Controller
     {
 
         private readonly IncidentRepository inMemoryRepository;
-
-
         private readonly IncidentDbDal incidentDbDal;
         private readonly CustomerDbDal customerDbDal;
         private readonly ProductDbDal productDbDal;
         private readonly RegistrationDbDal registrationDbDal;
+        private readonly TechnicianDbDal technicianDbDal;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="IncidentController"/> class.
@@ -24,11 +23,11 @@ namespace TechSupport.Controller
         {
 
             inMemoryRepository = new IncidentRepository();
-
             incidentDbDal = new IncidentDbDal();
             customerDbDal = new CustomerDbDal();
             productDbDal = new ProductDbDal();
             registrationDbDal = new RegistrationDbDal();
+            technicianDbDal = new TechnicianDbDal();
         }
 
         /// <summary>
@@ -95,6 +94,38 @@ namespace TechSupport.Controller
         {
             int rowsAffected = incidentDbDal.AddIncident(customerId, productCode, title, description);
             return rowsAffected == 1;
+        }
+
+        /// <summary>
+        /// Gets an incident by ID.
+        /// </summary>
+        public IncidentDetail? GetIncidentById(int incidentId)
+        {
+            return incidentDbDal.GetIncidentById(incidentId);
+        }
+
+        /// <summary>
+        /// Gets all technicians.
+        /// </summary>
+        public List<Technician> GetTechnicians()
+        {
+            return technicianDbDal.GetTechnicians();
+        }
+
+        /// <summary>
+        /// Updates an incident.
+        /// </summary>
+        public bool UpdateIncident(int incidentId, int? techId, string description)
+        {
+            return incidentDbDal.UpdateIncident(incidentId, techId, description) == 1;
+        }
+
+        /// <summary>
+        /// Closes an incident.
+        /// </summary>
+        public bool CloseIncident(int incidentId, int techId, string description)
+        {
+            return incidentDbDal.CloseIncident(incidentId, techId, description) == 1;
         }
     }
 }
