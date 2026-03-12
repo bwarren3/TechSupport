@@ -4,7 +4,6 @@
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.TableLayoutPanel layout;
         private System.Windows.Forms.Label lblIncidentId;
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label lblProduct;
@@ -42,7 +41,6 @@
 
         private void InitializeComponent()
         {
-            layout = new System.Windows.Forms.TableLayoutPanel();
             lblIncidentId = new System.Windows.Forms.Label();
             lblCustomer = new System.Windows.Forms.Label();
             lblProduct = new System.Windows.Forms.Label();
@@ -68,139 +66,189 @@
             btnCloseIncident = new System.Windows.Forms.Button();
             btnClear = new System.Windows.Forms.Button();
 
-            layout.SuspendLayout();
             SuspendLayout();
 
-            layout.ColumnCount = 3;
-            layout.RowCount = 10;
-            layout.Dock = System.Windows.Forms.DockStyle.Fill;
-            layout.Padding = new System.Windows.Forms.Padding(16);
-
-            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            layout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-
+            // lblIncidentId
+            lblIncidentId.AutoSize = true;
+            lblIncidentId.Location = new System.Drawing.Point(20, 20);
+            lblIncidentId.Name = "lblIncidentId";
+            lblIncidentId.Size = new System.Drawing.Size(63, 15);
             lblIncidentId.Text = "Incident ID:";
-            lblIncidentId.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblIncidentId.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtIncidentId.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtIncidentId
+            txtIncidentId.Location = new System.Drawing.Point(120, 17);
+            txtIncidentId.Name = "txtIncidentId";
+            txtIncidentId.Size = new System.Drawing.Size(120, 23);
+            txtIncidentId.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
+            // btnGetIncident
+            btnGetIncident.Location = new System.Drawing.Point(260, 16);
+            btnGetIncident.Name = "btnGetIncident";
+            btnGetIncident.Size = new System.Drawing.Size(80, 25);
             btnGetIncident.Text = "Get";
-            btnGetIncident.Dock = System.Windows.Forms.DockStyle.None;
-            btnGetIncident.Anchor = AnchorStyles.Left;
-            btnGetIncident.Width = 80;
+            btnGetIncident.UseVisualStyleBackColor = true;
+            btnGetIncident.Anchor = AnchorStyles.Top | AnchorStyles.Left;
 
+            // lblCustomer
+            lblCustomer.AutoSize = true;
+            lblCustomer.Location = new System.Drawing.Point(20, 55);
+            lblCustomer.Name = "lblCustomer";
+            lblCustomer.Size = new System.Drawing.Size(62, 15);
             lblCustomer.Text = "Customer:";
-            lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtCustomer
+            txtCustomer.Location = new System.Drawing.Point(120, 52);
+            txtCustomer.Name = "txtCustomer";
             txtCustomer.ReadOnly = true;
+            txtCustomer.Size = new System.Drawing.Size(620, 23);
+            txtCustomer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblProduct
+            lblProduct.AutoSize = true;
+            lblProduct.Location = new System.Drawing.Point(20, 90);
+            lblProduct.Name = "lblProduct";
+            lblProduct.Size = new System.Drawing.Size(49, 15);
             lblProduct.Text = "Product:";
-            lblProduct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblProduct.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtProduct
+            txtProduct.Location = new System.Drawing.Point(120, 87);
+            txtProduct.Name = "txtProduct";
             txtProduct.ReadOnly = true;
+            txtProduct.Size = new System.Drawing.Size(620, 23);
+            txtProduct.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblTechnician
+            lblTechnician.AutoSize = true;
+            lblTechnician.Location = new System.Drawing.Point(20, 125);
+            lblTechnician.Name = "lblTechnician";
+            lblTechnician.Size = new System.Drawing.Size(65, 15);
             lblTechnician.Text = "Technician:";
-            lblTechnician.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblTechnician.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            cboTechnician.Dock = System.Windows.Forms.DockStyle.Fill;
+            // cboTechnician
             cboTechnician.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cboTechnician.Location = new System.Drawing.Point(120, 122);
+            cboTechnician.Name = "cboTechnician";
+            cboTechnician.Size = new System.Drawing.Size(620, 23);
+            cboTechnician.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblTitle
+            lblTitle.AutoSize = true;
+            lblTitle.Location = new System.Drawing.Point(20, 160);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new System.Drawing.Size(32, 15);
             lblTitle.Text = "Title:";
-            lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtTitle
+            txtTitle.Location = new System.Drawing.Point(120, 157);
+            txtTitle.Name = "txtTitle";
             txtTitle.ReadOnly = true;
+            txtTitle.Size = new System.Drawing.Size(620, 23);
+            txtTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblDateOpened
+            lblDateOpened.AutoSize = true;
+            lblDateOpened.Location = new System.Drawing.Point(20, 195);
+            lblDateOpened.Name = "lblDateOpened";
+            lblDateOpened.Size = new System.Drawing.Size(79, 15);
             lblDateOpened.Text = "Date Opened:";
-            lblDateOpened.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblDateOpened.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtDateOpened.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtDateOpened
+            txtDateOpened.Location = new System.Drawing.Point(120, 192);
+            txtDateOpened.Name = "txtDateOpened";
             txtDateOpened.ReadOnly = true;
+            txtDateOpened.Size = new System.Drawing.Size(620, 23);
+            txtDateOpened.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblDescription
+            lblDescription.AutoSize = true;
+            lblDescription.Location = new System.Drawing.Point(20, 230);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new System.Drawing.Size(70, 15);
             lblDescription.Text = "Description:";
-            lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblDescription.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtDescription
+            txtDescription.Location = new System.Drawing.Point(120, 227);
             txtDescription.Multiline = true;
             txtDescription.ReadOnly = true;
-            txtDescription.Height = 80;
             txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new System.Drawing.Size(620, 90);
+            txtDescription.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
+            // lblTextToAdd
+            lblTextToAdd.AutoSize = true;
+            lblTextToAdd.Location = new System.Drawing.Point(20, 335);
+            lblTextToAdd.Name = "lblTextToAdd";
+            lblTextToAdd.Size = new System.Drawing.Size(67, 15);
             lblTextToAdd.Text = "Text To Add:";
-            lblTextToAdd.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            lblTextToAdd.Dock = System.Windows.Forms.DockStyle.Fill;
 
-            txtTextToAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            // txtTextToAdd
+            txtTextToAdd.Location = new System.Drawing.Point(120, 332);
             txtTextToAdd.Multiline = true;
-            txtTextToAdd.Height = 60;
             txtTextToAdd.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            txtTextToAdd.Name = "txtTextToAdd";
+            txtTextToAdd.Size = new System.Drawing.Size(620, 70);
+            txtTextToAdd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-            btnUpdateIncident.Text = "Update";
-            btnCloseIncident.Text = "Close";
-            btnClear.Text = "Clear";
-
-            lblMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            // lblMessage
+            lblMessage.Location = new System.Drawing.Point(120, 415);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new System.Drawing.Size(620, 23);
             lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            lblMessage.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
 
-            layout.Controls.Add(lblIncidentId, 0, 0);
-            layout.Controls.Add(txtIncidentId, 1, 0);
-            layout.Controls.Add(btnGetIncident, 2, 0);
+            // btnUpdateIncident
+            btnUpdateIncident.Location = new System.Drawing.Point(760, 330);
+            btnUpdateIncident.Name = "btnUpdateIncident";
+            btnUpdateIncident.Size = new System.Drawing.Size(90, 28);
+            btnUpdateIncident.Text = "Update";
+            btnUpdateIncident.UseVisualStyleBackColor = true;
+            btnUpdateIncident.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
-            layout.Controls.Add(lblCustomer, 0, 1);
-            layout.Controls.Add(txtCustomer, 1, 1);
+            // btnCloseIncident
+            btnCloseIncident.Location = new System.Drawing.Point(760, 365);
+            btnCloseIncident.Name = "btnCloseIncident";
+            btnCloseIncident.Size = new System.Drawing.Size(90, 28);
+            btnCloseIncident.Text = "Close";
+            btnCloseIncident.UseVisualStyleBackColor = true;
+            btnCloseIncident.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
-            layout.Controls.Add(lblProduct, 0, 2);
-            layout.Controls.Add(txtProduct, 1, 2);
+            // btnClear
+            btnClear.Location = new System.Drawing.Point(760, 400);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new System.Drawing.Size(90, 28);
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Anchor = AnchorStyles.Top | AnchorStyles.Right;
 
-            layout.Controls.Add(lblTechnician, 0, 3);
-            layout.Controls.Add(cboTechnician, 1, 3);
-
-            layout.Controls.Add(lblTitle, 0, 4);
-            layout.Controls.Add(txtTitle, 1, 4);
-
-            layout.Controls.Add(lblDateOpened, 0, 5);
-            layout.Controls.Add(txtDateOpened, 1, 5);
-
-            layout.Controls.Add(lblDescription, 0, 6);
-            layout.Controls.Add(txtDescription, 1, 6);
-
-            layout.Controls.Add(lblTextToAdd, 0, 7);
-            layout.Controls.Add(txtTextToAdd, 1, 7);
-
-            FlowLayoutPanel buttonPanel = new()
-            {
-                Dock = System.Windows.Forms.DockStyle.Left,
-                FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight,
-                WrapContents = false,
-                AutoSize = true,
-                AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-            };
-
-            buttonPanel.Controls.Add(btnUpdateIncident);
-            buttonPanel.Controls.Add(btnCloseIncident);
-            buttonPanel.Controls.Add(btnClear);
-
-            layout.Controls.Add(lblMessage, 1, 8);
-            layout.Controls.Add(buttonPanel, 1, 9);
-
-            Controls.Add(layout);
-
+            // UpdateIncidentControl
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(lblIncidentId);
+            Controls.Add(txtIncidentId);
+            Controls.Add(btnGetIncident);
+            Controls.Add(lblCustomer);
+            Controls.Add(txtCustomer);
+            Controls.Add(lblProduct);
+            Controls.Add(txtProduct);
+            Controls.Add(lblTechnician);
+            Controls.Add(cboTechnician);
+            Controls.Add(lblTitle);
+            Controls.Add(txtTitle);
+            Controls.Add(lblDateOpened);
+            Controls.Add(txtDateOpened);
+            Controls.Add(lblDescription);
+            Controls.Add(txtDescription);
+            Controls.Add(lblTextToAdd);
+            Controls.Add(txtTextToAdd);
+            Controls.Add(lblMessage);
+            Controls.Add(btnUpdateIncident);
+            Controls.Add(btnCloseIncident);
+            Controls.Add(btnClear);
             Name = "UpdateIncidentControl";
-            Size = new System.Drawing.Size(100, 100);
-
-            layout.ResumeLayout(false);
-            layout.PerformLayout();
+            Size = new System.Drawing.Size(880, 470);
             ResumeLayout(false);
+            PerformLayout();
         }
     }
 }
