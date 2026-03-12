@@ -88,7 +88,7 @@
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(900, 550);
+            ClientSize = new System.Drawing.Size(1100, 700);
             Controls.Add(MainTabControl);
             Controls.Add(TopPanel);
             Name = "MainDashboardForm";

@@ -87,7 +87,9 @@
             txtIncidentId.Dock = System.Windows.Forms.DockStyle.Fill;
 
             btnGetIncident.Text = "Get";
-            btnGetIncident.Dock = System.Windows.Forms.DockStyle.Fill;
+            btnGetIncident.Dock = System.Windows.Forms.DockStyle.None;
+            btnGetIncident.Anchor = AnchorStyles.Left;
+            btnGetIncident.Width = 80;
 
             lblCustomer.Text = "Customer:";
             lblCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,7 +133,7 @@
             txtDescription.Dock = System.Windows.Forms.DockStyle.Fill;
             txtDescription.Multiline = true;
             txtDescription.ReadOnly = true;
-            txtDescription.Height = 100;
+            txtDescription.Height = 80;
             txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 
             lblTextToAdd.Text = "Text To Add:";
@@ -140,7 +142,7 @@
 
             txtTextToAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             txtTextToAdd.Multiline = true;
-            txtTextToAdd.Height = 80;
+            txtTextToAdd.Height = 60;
             txtTextToAdd.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 
             btnUpdateIncident.Text = "Update";
@@ -194,7 +196,7 @@
             Controls.Add(layout);
 
             Name = "UpdateIncidentControl";
-            Size = new System.Drawing.Size(900, 550);
+            Size = new System.Drawing.Size(100, 100);
 
             layout.ResumeLayout(false);
             layout.PerformLayout();
